@@ -46,6 +46,6 @@ ENTRYPOINT /etc/init.d/nagios-nrpe-server start && /bin/bash
 ## auto start
 RUN apt-get install -y aptitude
 RUN aptitude -y install sysv-rc-conf
-RUN sysv-rc-conf nagios-nrpe-server on 
-RUN sysv-rc-conf td-agent on
-RUN sysv-rc-conf nginx on
+#RUN sysv-rc-conf nagios-nrpe-server on 
+#RUN sysv-rc-conf td-agent on
+#RUN sysv-rc-conf nginx on
