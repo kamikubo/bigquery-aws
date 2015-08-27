@@ -40,7 +40,7 @@ EXPOSE 80
 ENTRYPOINT /etc/init.d/td-agent restart&& /etc/init.d/nagios-nrpe-server start && /etc/init.d/nginx start && /bin/bash
 
 ## auto start
-RUN aptitude -y install sysv-rc-conf
+RUN aptitude -y install sysv-rc-conf | sh
 RUN sysv-rc-conf nagios-nrpe-server on
 RUN sysv-rc-conf td-agent on
 RUN sysv-rc-conf nginx on
