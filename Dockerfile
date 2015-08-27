@@ -31,13 +31,14 @@ RUN /usr/sbin/td-agent-gem install fluent-plugin-bigquery --no-ri --no-rdoc -V
 RUN curl -L https://raw.githubusercontent.com/kaizenplatform/fluent-plugin-bigquery/master/LICENSE.txt > fluent-plugin-bigquery-license.txt
 
 # nagios
-RUN apt-get install -y nagios-nrpe-server nagios-plugins
+RUN apt-get install -y nagios-nrpe-server
+RUN apt-get install -y nagios-plugins
 ADD nrpe.cfg /etc/nagios/nrpe.cfg
 ADD check_mem.pl /usr/lib/nagios/plugins/check_mem.pl
 
 # start fluentd and nginx and nrpe
 EXPOSE 80
-ENTRYPOINT /etc/init.d/td-agent restart&& /etc/init.d/nagios-nrpe-server start && /etc/init.d/nginx start && /bin/bash
+ENTRYPOINT /etc/init.d/td-agent restart && /etc/init.d/nagios-nrpe-server start && /etc/init.d/nginx start && /bin/bash
 
 ## auto start
 #RUN aptitude -y install sysv-rc-conf | sh
